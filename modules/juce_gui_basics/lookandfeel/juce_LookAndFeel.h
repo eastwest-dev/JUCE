@@ -159,7 +159,7 @@ public:
 
         @see setColour, Component::findColour, Component::setColour
     */
-    Colour findColour (int colourId) const noexcept;
+    virtual Colour findColour (int colourId) const noexcept;
 
     /** Registers a colour to be used for a particular purpose.
 

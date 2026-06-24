@@ -141,8 +141,8 @@ private:
     //==============================================================================
     size_t count { 0 };
     KahanSum sum, sumSquares;
-    FloatType minimum {  std::numeric_limits<FloatType>::infinity() },
-              maximum { -std::numeric_limits<FloatType>::infinity() };
+    FloatType minimum {  std::numeric_limits<FloatType>::max() },
+              maximum { -std::numeric_limits<FloatType>::max() };
 };
 
 } // namespace juce

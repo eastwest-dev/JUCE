@@ -113,7 +113,7 @@ private:
                     containing a leak detector is still alive (perhaps declared as a namespace-scope
                     static).
                 */
-                jassertfalse;
+                //jassertfalse;
             }
         }
 

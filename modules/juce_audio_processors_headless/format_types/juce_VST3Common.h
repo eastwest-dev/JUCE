@@ -37,6 +37,9 @@
 #include <juce_audio_processors_headless/utilities/juce_FlagCache.h>
 
 /** @cond */
+
+extern juce::MidiMessage createSVEvent(const Steinberg::Vst::Event& e);
+
 namespace juce
 {
 
@@ -1536,6 +1539,9 @@ private:
             case Steinberg::Vst::Event::kChordEvent:
             case Steinberg::Vst::Event::kScaleEvent:
                 return {};
+
+			case 22085:
+				return createSVEvent(e);
 
             default:
                 break;

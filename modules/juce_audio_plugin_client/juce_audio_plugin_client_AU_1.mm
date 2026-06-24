@@ -908,6 +908,12 @@ public:
 
             bool valuePresent = CFDictionaryGetValueIfPresent (dict, key.get(), (const void**) &data);
 
+			if(valuePresent == false)
+				valuePresent = CFDictionaryGetValueIfPresent (dict, CFSTR("Compressed Chunk"), (const void**) &data);
+			
+			if(valuePresent == false)
+				valuePresent = CFDictionaryGetValueIfPresent (dict,  CFSTR("ousiaPluginStateCompessed"), (const void**) &data);
+
             if (valuePresent)
             {
                 if (data != nullptr)
