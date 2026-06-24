@@ -92,16 +92,17 @@ public:
                             ? Component::getApproximateScaleFactorForComponent (options.componentToCentreAround)
                             : 1.0f)
     {
-        if (options.content.willDeleteObject())
+		setResizable (options.resizable, options.useBottomRightCornerResizer);
+
+		setUsingNativeTitleBar (options.useNativeTitleBar);
+		setAlwaysOnTop (WindowUtils::areThereAnyAlwaysOnTopWindows());
+
+		if (options.content.willDeleteObject())
             setContentOwned (options.content.release(), true);
         else
             setContentNonOwned (options.content.release(), true);
 
         centreAroundComponent (options.componentToCentreAround, getWidth(), getHeight());
-        setResizable (options.resizable, options.useBottomRightCornerResizer);
-
-        setUsingNativeTitleBar (options.useNativeTitleBar);
-        setAlwaysOnTop (WindowUtils::areThereAnyAlwaysOnTopWindows());
     }
 
     void closeButtonPressed() override

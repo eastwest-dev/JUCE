@@ -222,7 +222,7 @@ public:
     template <typename CharPointerType>
     static double readDoubleValue (CharPointerType& text) noexcept
     {
-        constexpr auto inf = std::numeric_limits<double>::infinity();
+        constexpr auto inf = std::numeric_limits<double>::max();
 
         bool isNegative = false;
 

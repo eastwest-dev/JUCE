@@ -988,7 +988,7 @@ private:
             if (timeOutMs > 0)
                 return timeOutMs / 1000.0;
 
-            return timeOutMs < 0 ? std::numeric_limits<double>::infinity() : 60.0;
+            return timeOutMs < 0 ? std::numeric_limits<double>::max() : 60.0;
         }();
 
         NSUniquePtr<NSMutableURLRequest> req { [[NSMutableURLRequest requestWithURL: nsURL.get()

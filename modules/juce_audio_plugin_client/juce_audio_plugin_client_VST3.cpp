@@ -126,6 +126,8 @@ JUCE_BEGIN_NO_SANITIZE ("vptr")
  DEF_CLASS_IID (ARA::IMainFactory)
 #endif
 
+extern juce::AudioProcessor* duringInit;
+
 namespace juce
 {
 
@@ -417,7 +419,8 @@ static tresult extractResult (const QueryInterfaceResult& userInterface,
         // If you hit this assertion, you've provided a custom implementation of an interface
         // that JUCE implements already. As a result, your plugin may not behave correctly.
         // Consider removing your custom implementation.
-        jassertfalse;
+		// we DO use our custom implementation and JUCE does not care about our needs for that..
+        // jassertfalse;
 
         return userInterface.extract (obj);
     }
@@ -1605,10 +1608,12 @@ public:
     //==============================================================================
     AudioProcessor* getPluginInstance() const noexcept
     {
-        if (audioProcessor != nullptr)
-            return audioProcessor->get();
-
-        return nullptr;
+		if (audioProcessor != nullptr)
+		{
+			duringInit = nullptr;
+			return audioProcessor->get();
+		}
+		return duringInit;
     }
 
     static constexpr auto pluginShouldBeMarkedDirtyFlag = 1 << 16;
